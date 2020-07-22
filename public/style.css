@@ -31,7 +31,7 @@ header {
 div.name {
     padding : 0.5em;
     font-family: Vazir;
-    height : 10vh;
+    height : 40px;
     display : flex;
     justify-content: space-between;
     box-sizing: border-box;
@@ -137,8 +137,8 @@ div.right span::before {
 textarea {
     max-width : 100%;
     min-width : 100%;
-    min-height : 25vh;
-    max-height : 25vh;
+    min-height : 20vh;
+    max-height : 20vh;
     padding : 0.5em;
     box-sizing: border-box;
     font-family : Vazir;
