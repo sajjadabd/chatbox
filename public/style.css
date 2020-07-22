@@ -21,9 +21,9 @@ header {
     color : white;
     display : flex;
     justify-content: center;
+	align-items : center;
     height : 10vh;
     box-sizing: border-box;
-    padding : 0.6em 0.2em;
     font-size : 1.4em;
     font-family: cursive;
 }
@@ -31,7 +31,7 @@ header {
 div.name {
     padding : 0.5em;
     font-family: Vazir;
-    height : 6vh;
+    height : 10vh;
     display : flex;
     justify-content: space-between;
     box-sizing: border-box;
@@ -137,8 +137,8 @@ div.right span::before {
 textarea {
     max-width : 100%;
     min-width : 100%;
-    min-height : 30vh;
-    max-height : 30vh;
+    min-height : 25vh;
+    max-height : 25vh;
     padding : 0.5em;
     box-sizing: border-box;
     font-family : Vazir;
