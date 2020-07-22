@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./socket.io.js"></script>
     <link rel="stylesheet" href="./checkBox.css" />
     <link rel="stylesheet" href="./style.css" />
     <title>Document</title>
@@ -16,7 +17,7 @@
         </header>
 
         <div class="name">
-            <div>Chat With : Sajjad</div>  
+            <div>Welcome, Sajjad</div>  
             <div class="checkBoxContainer">
                 <input type="checkbox" name="mute" id="mute">
                 <span class="checkmark"></span>
@@ -33,16 +34,17 @@
         <div class="input">
             <textarea
             name="message" 
-            id="message"  
-            >
-        </textarea>
+            id="message"
+			value=""
+			placeholder="Type Your Message Here ..."
+            ></textarea>
             <div class="send">
                 <i class="fas fa-send"></i>
             </div>
         </div>
 
         <div class="status">
-            status : connected
+            status : <span id="status">disconnected</span>
         </div>
     </div>
 

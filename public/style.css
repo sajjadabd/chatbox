@@ -10,9 +10,10 @@
 
 body {
     margin : 0;
-    font-family : VazirThin;
+    font-family : Vazir;
     height : 100vh;
     box-sizing: border-box;
+    overflow : hidden;
 }
 
 header {
@@ -140,8 +141,7 @@ textarea {
     max-height : 30vh;
     padding : 0.5em;
     box-sizing: border-box;
-    font-family : Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-family : VazirThin;
+    font-family : Vazir;
     position : relative;
     border : 1px solid black;
 }
