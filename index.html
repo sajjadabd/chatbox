@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./checkBox.css" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            chatbox
+        </header>
+
+        <div class="name">
+            <div>Chat With : Sajjad</div>  
+            <div class="checkBoxContainer">
+                <input type="checkbox" name="mute" id="mute">
+                <span class="checkmark"></span>
+                <label for="mute">mute sound</label>
+            </div> 
+        </div>
+
+        <div class="messages" id="messages">
+            <div class="center">
+                <span>No Messages Yet</span> 
+            </div>
+        </div>
+
+        <div class="input">
+            <textarea
+            name="message" 
+            id="message"  
+            >
+        </textarea>
+            <div class="send">
+                <i class="fas fa-send"></i>
+            </div>
+        </div>
+
+        <div class="status">
+            status : connected
+        </div>
+    </div>
+
+    <script src="./jQueryCDN/jquery-3.4.1.min.js"></script>
+    <script src="./code.js"></script>
+</body>
+</html>

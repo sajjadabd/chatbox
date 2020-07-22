@@ -1,0 +1,173 @@
+@font-face {
+    font-family : VazirThin;
+    src : url(./fonts/Vazir-Thin.ttf);
+}
+
+@font-face {
+    font-family : Vazir;
+    src : url(./fonts/Vazir.ttf);
+}
+
+body {
+    margin : 0;
+    font-family : VazirThin;
+    height : 100vh;
+    box-sizing: border-box;
+}
+
+header {
+    background-color : dodgerblue;
+    color : white;
+    display : flex;
+    justify-content: center;
+    height : 10vh;
+    box-sizing: border-box;
+    padding : 0.6em 0.2em;
+    font-size : 1.4em;
+    font-family: cursive;
+}
+
+div.name {
+    padding : 0.5em;
+    font-family: Vazir;
+    height : 6vh;
+    display : flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+
+div.name label , div.name input {
+    cursor : pointer;
+}
+
+div.container {
+    /* border : 1px solid black; */
+    display : flex;
+    flex-direction : column;
+    box-sizing: border-box;
+    width : 70vw;
+    margin : auto;
+    min-width : 300px;
+    height : 100vh;
+    --spanColor : rgb(218, 218, 218);
+    --edgeColor : rgb(218, 218, 218);
+    --offset : -8px;
+    --borderWidth : 10px;
+}
+
+
+div.messages {
+    border : 1px solid black;
+    box-sizing: border-box;
+    width : 100%;
+    min-width : 300px;
+    height : 50vh;
+    overflow-y: scroll;
+    position : relative;
+    scroll-behavior: smooth;
+}
+
+
+div.messages div.center {
+    display : flex;
+    justify-content: center;
+    align-items : center;
+    height : 100%;
+}
+
+div.messages div.center span {
+    background-color: var(--spanColor);
+    padding : 1em;
+    border-radius: 10px;
+}
+
+div.left {
+    display : flex;
+    justify-content: flex-start;
+    /* border : 1px solid black; */
+}
+
+div.right {
+    display : flex;
+    justify-content: flex-end;
+    /* border : 1px solid black; */
+}
+
+div.left span , div.right span {
+    padding : 0.5em 1em;
+    background-color : var(--spanColor);
+    border-radius : 5px;
+    margin : 0.3em 1em;
+    min-width : 10px;
+}
+
+div.left span {
+    text-align : left;
+    position : relative;
+}
+
+div.left span::before {
+    content : ' ';
+    position : absolute;
+    left : var(--offset);
+    top : 0;
+    border-color : var(--edgeColor) transparent transparent  transparent;
+    border-style: solid;
+    border-width : var(--borderWidth);
+    z-index : -1;
+} 
+
+div.right span {
+    text-align : right;
+    position : relative;
+}
+
+div.right span::before {
+    content : ' ';
+    position : absolute;
+    right : var(--offset);
+    top : 0;
+    border-color : var(--edgeColor) transparent transparent  transparent;
+    border-style: solid;
+    border-width : var(--borderWidth);
+    z-index : -1;
+}
+
+textarea {
+    max-width : 100%;
+    min-width : 100%;
+    min-height : 30vh;
+    max-height : 30vh;
+    padding : 0.5em;
+    box-sizing: border-box;
+    font-family : Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-family : VazirThin;
+    position : relative;
+    border : 1px solid black;
+}
+
+div.input div.send {
+    position : absolute;
+}
+
+div.status {
+    height : 4vh;
+    width : 100%;
+    box-sizing: border-box;
+    padding : 1px;
+    padding-left : 0.5em;
+}
+
+
+@media only screen and (max-width : 600px) {
+    div.container {
+        width :90vw;
+    }
+}
+
+
+@media only screen and (max-width : 500px) {
+    div.container {
+        width :100vw;
+    }
+}
