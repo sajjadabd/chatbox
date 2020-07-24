@@ -25,7 +25,7 @@ header {
     height : 10vh;
     box-sizing: border-box;
     font-size : 1.4em;
-    font-family: cursive;
+    font-family: Tahoma;
 }
 
 div.name {
@@ -56,6 +56,59 @@ div.container {
     --borderWidth : 10px;
 }
 
+
+div.mainBox {
+    display : grid;
+    grid-template-columns: 2fr 4fr;
+    box-sizing: border-box;
+}
+
+div.users {
+    box-sizing: border-box;
+}
+
+div.searchUser {
+    height : 40px;
+}
+
+div.searchUser input {
+    width : 100%;
+    height : 100%;
+    box-sizing: border-box;
+    padding-left : 10px;
+}
+
+div.contacts div.contact {
+    width : 100%;
+    height : 50px;
+    padding : 10px;
+    display : flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    cursor : pointer;
+    border : 1px solid gray;
+    transition : 0.5s;
+    user-select : none;
+}
+
+div.counter{
+    display: flex;
+    justify-content: center;
+    align-content : center;
+    background-color: royalblue;
+    color : white;
+    box-sizing: border-box;
+    width : 22px;
+    height : 22px;
+    border-radius: 50%;
+}
+
+
+
+div.contacts div.contact:hover {
+    background-color : rgb(199, 225, 251);
+}
 
 div.messages {
     border : 1px solid black;
@@ -154,8 +207,6 @@ div.status {
     height : 4vh;
     width : 100%;
     box-sizing: border-box;
-    padding : 1px;
-    padding-left : 0.5em;
 }
 
 
