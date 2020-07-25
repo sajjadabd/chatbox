@@ -140,6 +140,8 @@ $(document).ready(function(){
 
         $('#messages').html(fetchMessages);
 
+        messageBox.scrollTop = messageBox.scrollHeight;
+
         noMessagesYet = false;
 
 
@@ -306,9 +308,7 @@ $(document).ready(function(){
                 $('#messages').append(newMessage);
             }
         }
-       
-        
-        
+
         messageBox.scrollTop = messageBox.scrollHeight;
     });
 

@@ -222,6 +222,7 @@ textarea {
     font-family : Vazir;
     position : relative;
     border : 1px solid black;
+    resize : none;
 }
 
 div.input div.send {
