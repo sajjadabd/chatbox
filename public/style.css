@@ -14,6 +14,8 @@ body {
     height : 100vh;
     box-sizing: border-box;
     overflow : hidden;
+    background-color: rgb(223, 223, 223);
+    --minimumWidth : 350px;
 }
 
 header {
@@ -26,15 +28,19 @@ header {
     box-sizing: border-box;
     font-size : 1.4em;
     font-family: Tahoma;
+    position : relative;
 }
 
 div.name {
     padding : 0.5em;
     font-family: Vazir;
+    width : auto;
+    min-width : var(--minimumWidth);
     height : 40px;
     display : flex;
     justify-content: space-between;
     box-sizing: border-box;
+    background-color: white;
 }
 
 div.name label , div.name input {
@@ -49,11 +55,13 @@ div.container {
     width : 70vw;
     margin : auto;
     min-width : 300px;
-    height : 100vh;
+    height : 110vh;
     --spanColor : rgb(218, 218, 218);
     --edgeColor : rgb(218, 218, 218);
     --offset : -8px;
     --borderWidth : 10px;
+    background-color: white;
+    overflow-y : hidden;
 }
 
 
@@ -61,11 +69,15 @@ div.mainBox {
     display : grid;
     grid-template-columns: 2fr 4fr;
     box-sizing: border-box;
+    width : 100%;
 }
 
 div.users {
     box-sizing: border-box;
+    height : 50vw;
+    
 }
+
 
 div.searchUser {
     height : 40px;
@@ -78,7 +90,7 @@ div.searchUser input {
     padding-left : 10px;
 }
 
-div.contacts div.contact {
+div.contact {
     width : 100%;
     height : 50px;
     padding : 10px;
@@ -92,29 +104,36 @@ div.contacts div.contact {
     user-select : none;
 }
 
+.activeContact {
+    background-color: dodgerblue;
+    color : white;
+}
+
 div.counter{
     display: flex;
     justify-content: center;
     align-content : center;
-    background-color: royalblue;
+    background-color: red;
     color : white;
     box-sizing: border-box;
     width : 22px;
     height : 22px;
     border-radius: 50%;
+    font-size : 0.9em;
 }
 
 
 
 div.contacts div.contact:hover {
-    background-color : rgb(199, 225, 251);
+    background-color : rgb(76, 165, 253);
+    color : white;
 }
 
 div.messages {
     border : 1px solid black;
     box-sizing: border-box;
     width : 100%;
-    min-width : 300px;
+    min-width : var(--minimumWidth);
     height : 50vh;
     overflow-y: scroll;
     position : relative;
@@ -168,7 +187,7 @@ div.left span::before {
     border-color : var(--edgeColor) transparent transparent  transparent;
     border-style: solid;
     border-width : var(--borderWidth);
-    z-index : -1;
+    z-index : 0;
 } 
 
 div.right span {
@@ -184,12 +203,12 @@ div.right span::before {
     border-color : var(--edgeColor) transparent transparent  transparent;
     border-style: solid;
     border-width : var(--borderWidth);
-    z-index : -1;
+    z-index : 0;
 }
 
 textarea {
-    max-width : 100%;
-    min-width : 100%;
+    min-width : var(--minimumWidth);
+    width : 100%;
     min-height : 20vh;
     max-height : 20vh;
     padding : 0.5em;
@@ -205,14 +224,30 @@ div.input div.send {
 
 div.status {
     height : 4vh;
+    min-width : var(--minimumWidth);
     width : 100%;
     box-sizing: border-box;
 }
 
+@media only screen and (max-width : 900px) {
+    div.container {
+        width :80vw;
+    }
 
-@media only screen and (max-width : 600px) {
+    
+}
+
+
+@media only screen and (max-width : 800px) {
     div.container {
         width :90vw;
+    }
+}
+
+
+@media only screen and (max-width : 700px) {
+    div.container {
+        width :100vw;
     }
 }
 
@@ -220,5 +255,23 @@ div.status {
 @media only screen and (max-width : 500px) {
     div.container {
         width :100vw;
+    }
+
+
+    div.mainBox {
+        grid-template-columns: 0px 6fr;
+    }
+
+    div.searchUser input {
+        width : 100vw;
+    }
+
+    div.contacts div.contact {
+        width : 100vw;
+    }
+
+
+    #nav-icon4 {
+        display : block;
     }
 }

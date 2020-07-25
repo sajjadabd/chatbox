@@ -9,6 +9,7 @@
         let username = room;
     </script>
     <script src="./socket.io.js"></script>
+    <link rel="stylesheet" href="./hamberger.css" />
     <link rel="stylesheet" href="./checkBox.css" />
     <link rel="stylesheet" href="./style.css" />
     <title>Document</title>
@@ -20,13 +21,20 @@
             
         </span>
         <header>
+            <div id="nav-icon4">
+                <span></span>
+                <span></span>
+                <span></span>
+                <div id="totalCounter" class="">
+                    <div></div>
+                </div>
+            </div>
             chatbox
         </header>
 
         
-        
         <div class="mainBox">
-            <div class="users">
+            <div class="users" id="users">
                 <div class="searchUser">
                     <input 
                     type="text" 
@@ -36,13 +44,10 @@
                     autocomplete="off" />
                 </div>
                 <div class="contacts" id="contacts">
-                    <!-- <div class="contact">
-                        <div class="getUser">mehdi</div>
-                        <div class="counter"><span>1</span></div>
-                    </div> -->
+                    
                 </div>
             </div>
-            <div class="text">
+            <div class="text" id="text">
                 <div class="name">
                     <div>Chat With : <span id="toUser">...</span></div>  
                      
@@ -91,6 +96,7 @@
     </div>
 
     <script src="./jQueryCDN/jquery-3.4.1.min.js"></script>
+    <script src="./hamberger.js"></script>
     <script src="./code.js"></script>
 </body>
 </html>

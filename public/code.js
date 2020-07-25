@@ -59,11 +59,15 @@ $(document).ready(function(){
                 username : data[0].username, 
                 messages : []
             });
+
+            toUser = $('#toUser').text();
+            updateContactList(toUser);
+            
         } else {
             
         }
 
-        updateContactList();
+        
 
         console.log(contacts);
         
@@ -90,6 +94,7 @@ $(document).ready(function(){
     let toUser = '';
 
     $(document).on('click' , 'div.contact', function() {
+
         console.log('click');
         toUser = $(this).attr('data-user');
         console.log(toUser);
@@ -113,7 +118,9 @@ $(document).ready(function(){
 
         contacts[index].counter = 0;
 
-        updateContactList();
+        
+        updateContactList(toUser);
+
 
         contacts[index].messages.map( (value) => {
             if(value.source == 'to') {
@@ -134,7 +141,26 @@ $(document).ready(function(){
         $('#messages').html(fetchMessages);
 
         noMessagesYet = false;
+
+
+        /*
+            close contacts on 500px
+        */
+        if ( $(document).width() < 500 ) {
+            toggleSearch($('#nav-icon4'));
+        }
+
+        $('#search').val('');
+
+        //$('div.contact').addClass('active');
+        //console.log($(this));
+        //$(this).addClass('activeContact');
+        //$(this).css('background-color', 'dodgerblue');
+        //$(this).css('color', 'white');
+        
     });
+
+
 
     mute.addEventListener('change' , (e) => {
         muteSound = e.target.checked;
@@ -163,12 +189,41 @@ $(document).ready(function(){
     
     let contacts = [];
 
-    updateContactList = () => {
+
+    resetTotalCounter = () => {
+        let totalCounter = 0;
+        if ( totalCounter > 0 ) {
+            $('#totalCounter').addClass('totalCounter');
+            $('#totalCounter').first().html(totalCounter);
+        } else {
+            $('#totalCounter').removeClass('totalCounter');
+            $('#totalCounter').first().html('');
+        }
+    }
+
+    updateTotalCounter = () => {
+        let totalCounter = 0;
+
+        contacts.map( (value , index) => {
+            totalCounter += value.counter;
+        });
+
+        if ( totalCounter > 0 ) {
+            $('#totalCounter').addClass('totalCounter');
+            $('#totalCounter').first().html(totalCounter);
+        } else {
+            $('#totalCounter').removeClass('totalCounter');
+            $('#totalCounter').first().html('');
+        }
+    }
+
+    updateContactList = (toUser) => {
         let contactsList = ``;
+        
         
         contacts.map( (value , index) => {
             contactsList += `
-            <div class="contact" data-user="${value.username}">
+            <div class="contact ${value.username == toUser ? `activeContact` : ``}" data-user="${value.username}">
                 <div>${value.username}</div>
                 <div class="${value.counter > 0 ? `counter` : ``}">
                 <span>
@@ -177,6 +232,7 @@ $(document).ready(function(){
                 </div>
             </div>
             `;
+
         });
 
         $('#contacts').html(contactsList);
@@ -234,8 +290,11 @@ $(document).ready(function(){
 
         }
         
-
-        updateContactList();
+        if ( $(document).width() < 500 ) {
+            updateTotalCounter();
+        } else {
+            updateContactList();
+        }
 
 
         
@@ -296,15 +355,46 @@ $(document).ready(function(){
                     $('#messages').append(newMessage);
                 }
                 
-                
-                
-                
-        
+
                 message.value = '';
                 messageBox.scrollTop = messageBox.scrollHeight;
 
             }
         }
     });
+
+
+
+
+
+
+
+    open = false;
+
+	$('#nav-icon4').click(function(){
+		
+		toggleSearch($('#nav-icon4'));
+		
+    });
+
+    toggleSearch = (el) => {
+        el.toggleClass('open');
+
+        if(open == false) {
+			$('div.mainBox').css('grid-template-columns' , '0px 6fr');
+			$('div.text').hide();
+            $('div.users').show();
+            updateContactList();
+            resetTotalCounter();
+		} else {
+			$('div.mainBox').css('grid-template-columns' , '6fr 0px');
+			$('div.text').show();
+			$('div.users').hide();
+		}
+
+		open = !open;
+    }
+    
+
 });
 
