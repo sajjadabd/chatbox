@@ -88,6 +88,7 @@ div.searchUser input {
     height : 100%;
     box-sizing: border-box;
     padding-left : 10px;
+    transition: 1s;
 }
 
 div.contact {
@@ -107,6 +108,11 @@ div.contact {
 .activeContact {
     background-color: dodgerblue;
     color : white;
+}
+
+.danger {
+    background-color: rgb(248, 84, 117);
+    transition: 1s;
 }
 
 div.counter{

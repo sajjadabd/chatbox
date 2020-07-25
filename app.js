@@ -55,9 +55,12 @@ app.get('/:user' , (req,res) => {
 
     if(req.params.user == 'socket.io.js.map') {
         return;
+    } else if(thereIsSuchUser(req.params.user)){
+        res.redirect('/');
+    } else {
+        res.render('user' , { username : req.params.user });
     }
 
-    res.render('user' , { username : req.params.user });
     //console.log(req.params);
 });
 

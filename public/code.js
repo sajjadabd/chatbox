@@ -293,7 +293,7 @@ $(document).ready(function(){
         if ( $(document).width() < 500 ) {
             updateTotalCounter();
         } else {
-            updateContactList();
+            updateContactList($('#toUser').text());
         }
 
 
@@ -311,6 +311,10 @@ $(document).ready(function(){
         
         messageBox.scrollTop = messageBox.scrollHeight;
     });
+
+    $('#search').on('click' , function() {
+        $(this).removeClass('danger');
+    });
     
     
     textarea.addEventListener('keyup' , (e) => {
@@ -319,9 +323,14 @@ $(document).ready(function(){
         if( e.keyCode == 13 && e.shiftKey == false ) {
     
             let value = message.value.trim();
-            
-            if(value == '' ) {
 
+            let toUser = $('#toUser').text().trim();
+            
+            if( value == '' ) {
+                message.value = '';
+            } else if ( toUser == '...' ) {
+                $('#search').addClass('danger');
+                message.value = '';
             } else {
 
                 addToMessages({ 
