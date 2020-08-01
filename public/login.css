@@ -1,3 +1,40 @@
+@font-face {
+    font-family : VazirThin;
+    src : url(./fonts/Vazir-Thin.ttf);
+}
+
+@font-face {
+    font-family : Vazir;
+    src : url(./fonts/Vazir.ttf);
+}
+
+@font-face {
+    font-family : UbuntuBold;
+    src : url(./fonts/Ubuntu/Ubuntu-Bold.ttf);
+}
+
+@font-face {
+    font-family : UbuntuRegular;
+    src : url(./fonts/Ubuntu/Ubuntu-Regular.ttf);
+}
+
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    font-family : UbuntuBold;
+}
+::-moz-placeholder { /* Firefox 19+ */
+    font-family : UbuntuBold;
+}
+:-ms-input-placeholder { /* IE 10+ */
+    font-family : UbuntuBold;
+}
+:-moz-placeholder { /* Firefox 18- */
+    font-family : UbuntuBold;
+}
+
+
+
+
 body {
     margin : 0;
     height : 100vh;
@@ -16,7 +53,7 @@ header {
     justify-content: center;
     color : white;
     font-size : 2em;
-    font-family : Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-family : UbuntuBold;
     align-items : center;
     box-sizing: border-box;
 }
@@ -67,7 +104,7 @@ form fieldset {
 }
 
 form legend {
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-family : UbuntuBold;
     padding : 0 1em ;
     color : var(--color);
 }
@@ -93,7 +130,7 @@ input {
     border-bottom : 2px solid var(--color); ;
     outline : none;
     font-size : 1.2em;
-    font-family : Georgia, 'Times New Roman', Times, serif;
+    font-family : UbuntuBold;
     position : relative;
     background-color: transparent;
     color : var(--color);
@@ -143,7 +180,7 @@ div.placeholder {
     opacity: 0.5;
     position : absolute;
     font-size : 15px;
-    font-family : Georgia, 'Times New Roman', Times, serif;
+    font-family : UbuntuBold;
     top : 50%;
     left : 10px;
     transform: translateY(-50%);
@@ -164,7 +201,7 @@ div.littleholder {
 
 button {
     font-size : 1.2em;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-family : UbuntuBold;
     text-transform: uppercase;
     border : none;
     outline : none;
