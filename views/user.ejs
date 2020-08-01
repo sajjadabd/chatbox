@@ -9,6 +9,7 @@
         let username = room;
     </script>
     <script src="./socket.io.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="./hamberger.css" />
     <link rel="stylesheet" href="./checkBox.css" />
     <link rel="stylesheet" href="./style.css" />
@@ -17,9 +18,7 @@
 <body>
 
     <div class="container">
-        <span id="username" style="display:none;">
-            
-        </span>
+
         <header>
             <div id="nav-icon4">
                 <span></span>
@@ -45,6 +44,9 @@
                     id="search" 
                     placeholder="Search User"
                     autocomplete="off" />
+                    <div class="searchIcon">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                    </div>
                 </div>
                 <div class="contacts" id="contacts">
                     
@@ -52,7 +54,7 @@
             </div>
             <div class="text" id="text">
                 <div class="name">
-                    <div>Chat With : <span id="toUser">...</span></div>  
+                    <div>To : <span id="toUser">...</span></div>  
                      
                     <div class="checkBoxContainer">
                         <input type="checkbox" name="mute" id="mute">
@@ -67,15 +69,19 @@
                 </div>
 
                 <div class="input">
-                    <textarea
+                    <input
                     name="message" 
                     id="message"
                     value=""
                     placeholder="Type Your Message Here ..."
                     autofocus
-                    ></textarea>
-                    <div class="send">
-                        <i class="fas fa-send"></i>
+                    />
+
+                    <div class="emoji">
+                        <i class="fa fa-smile-o" aria-hidden="true"></i>
+                    </div>
+                    <div class="send" id="sendIcon">
+                        <i class="fa fa-paper-plane" aria-hidden="true"></i>
                     </div>
                 </div>
 
@@ -83,19 +89,11 @@
                     status : <span id="status">disconnected</span>
                 </div>
 
-                <div style="visibility:hidden;">
+                <!-- <div style="visibility:hidden;">
                     <span id="numberOfUsers">1 user</span> connected
-                </div> 
-            </div>
-
-            
-            
+                </div>  -->
+            </div> 
         </div>
-        
-
-        
-
-        
     </div>
 
     <script src="./jQueryCDN/jquery-3.4.1.min.js"></script>

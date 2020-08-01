@@ -2,8 +2,6 @@ $(document).ready(function(){
 
     let socket = io();
 
-    //let username = document.getElementById('username').innerText.trim();
-
     socket.emit('new-user', { room : room } );
 
     let messageBox = document.getElementById('messages');
@@ -12,19 +10,25 @@ $(document).ready(function(){
 
     let status = document.getElementById('status');
 
-    let numberOfUsers = document.getElementById('numberOfUsers');
+    let sendIcon = document.getElementById('sendIcon');
+
+    //let numberOfUsers = document.getElementById('numberOfUsers');
 
     let mute = document.getElementById('mute');
 
     let send = new Audio('./audio/send.mp3');
     let recieve = new Audio('./audio/recieve.mp3');
 
+
+    sendIcon.addEventListener('click' , () => {
+        sendMessage();
+    });
+
     let searchInput = document.getElementById('search');
 
 
     let alreadySearched = false;
     searchInput.addEventListener('keyup' , (e) => {
-        //console.log(e.target.value);
 
         if(alreadySearched == false) {
             setTimeout( ()=> {
@@ -67,26 +71,8 @@ $(document).ready(function(){
             
         }
 
-        
-
         console.log(contacts);
         
-        /*
-        let searchResult = ``;
-
-        data.map( (value) => {
-            searchResult += `
-            <div class="contact" data-user="${value.username}">
-                <div>${value.username}</div>
-                <div class=""><span></span></div>
-            </div>
-            `
-            ;
-        });
-
-        $('#contacts').append(searchResult);
-
-        */
     });
 
     let muteSound = false;
@@ -106,8 +92,6 @@ $(document).ready(function(){
             return toUser == value.username;
         });
 
-        //console.log(index);
-        //console.log(contacts[index]);
 
         if( contacts[index] == undefined ) {
             $('#messages').html(fetchMessages);
@@ -144,21 +128,7 @@ $(document).ready(function(){
 
         noMessagesYet = false;
 
-
-        /*
-            close contacts on 500px
-        */
-        if ( $(document).width() < 500 ) {
-            toggleSearch($('#nav-icon4'));
-        }
-
         $('#search').val('');
-
-        //$('div.contact').addClass('active');
-        //console.log($(this));
-        //$(this).addClass('activeContact');
-        //$(this).css('background-color', 'dodgerblue');
-        //$(this).css('color', 'white');
         
     });
 
@@ -168,7 +138,6 @@ $(document).ready(function(){
         muteSound = e.target.checked;
     });
     
-    //console.log(messageBox);
     
     messageBox.scrollTop = messageBox.scrollHeight;
 
@@ -179,7 +148,7 @@ $(document).ready(function(){
         status.innerText = data.status;
     });
 
-    
+    /*
     socket.on('numberOfUsers' , (data) => {
         console.log(data);
         if( data.numberOfUsers > 1 ) {
@@ -188,7 +157,8 @@ $(document).ready(function(){
             numberOfUsers.innerText = `${data.numberOfUsers} user`;
         }
     });
-    
+    */
+
     let contacts = [];
 
 
@@ -226,11 +196,22 @@ $(document).ready(function(){
         contacts.map( (value , index) => {
             contactsList += `
             <div class="contact ${value.username == toUser ? `activeContact` : ``}" data-user="${value.username}">
-                <div>${value.username}</div>
+                <div class="avatar">
+                    <i class="fa fa-user-circle" aria-hidden="true"></i>
+                </div>
+                <div class="userInfo">
+                    <div class="contactUsername">${value.username}</div>
+                    <div class="lastMessage">
+                    <span>
+                    ${ value.messages.length > 0 ? (value.messages[value.messages.length-1].source  == 'to' ? 'You: ' : '') : '' }
+                    </span>
+                    ${ value.messages.length > 0 ? value.messages[value.messages.length-1].value : ''}
+                    </div>
+                </div>
                 <div class="${value.counter > 0 ? `counter` : ``}">
-                <span>
-                ${value.counter > 0 ? value.counter : ``}
-                </span>
+                    <span>
+                        ${value.counter > 0 ? value.counter : ``}
+                    </span>
                 </div>
             </div>
             `;
@@ -267,6 +248,7 @@ $(document).ready(function(){
 
         console.log(contacts);
     }
+
 
     socket.on('messageToClient' , (data) => {
         console.log(data);
@@ -310,70 +292,81 @@ $(document).ready(function(){
         }
 
         messageBox.scrollTop = messageBox.scrollHeight;
+
+        
     });
+
 
     $('#search').on('click' , function() {
         $(this).removeClass('danger');
     });
+
     
-    
-    textarea.addEventListener('keyup' , (e) => {
-        //console.log(e);
-    
-        if( e.keyCode == 13 && e.shiftKey == false ) {
-    
-            let value = message.value.trim();
+    sendMessage = () => {
+        let value = message.value.trim();
 
-            let toUser = $('#toUser').text().trim();
-            
-            if( value == '' ) {
-                message.value = '';
-            } else if ( toUser == '...' ) {
-                $('#search').addClass('danger');
-                message.value = '';
-            } else {
+        let toUser = $('#toUser').text().trim();
+        
+        if( value == '' ) {
+            message.value = '';
+        } else if ( toUser == '...' ) {
+            $('#search').addClass('danger');
+            message.value = '';
+        } else {
 
-                addToMessages({ 
-                    username : toUser , 
-                    message : value , 
-                    source : 'to',
-                    increment : 0,
-                });
+            addToMessages({ 
+                username : toUser , 
+                message : value , 
+                source : 'to',
+                increment : 0,
+            });
 
-                socket.emit('messageToServer' , { room : toUser , username : room , message : value });
+            socket.emit('messageToServer' , { room : toUser , username : room , message : value });
 
-                let newMessage = `
-                <div class="right">
-                    <span>${value}</span>
-                </div>
-                `;
+            let newMessage = `
+            <div class="right">
+                <span>${value}</span>
+            </div>
+            `;
 
-                try {
-                    if(!muteSound) {
-                        send.play();
-                    }
-                } catch(e) {
-
+            try {
+                if(!muteSound) {
+                    send.play();
                 }
-                
-                
-                if( noMessagesYet == true ) {
-                    $('#messages').html(newMessage);
-                    noMessagesYet = false;
-                } else {
-                    $('#messages').append(newMessage);
-                }
-                
-
-                message.value = '';
-                messageBox.scrollTop = messageBox.scrollHeight;
+            } catch(e) {
 
             }
+            
+            
+            if( noMessagesYet == true ) {
+                $('#messages').html(newMessage);
+                noMessagesYet = false;
+            } else {
+                $('#messages').append(newMessage);
+            }
+            
+
+            message.value = '';
+            messageBox.scrollTop = messageBox.scrollHeight;
+
+            if ( $(document).width() < 500 ) {
+                updateTotalCounter();
+            } else {
+                updateContactList($('#toUser').text());
+            }
+
+        }
+    }
+    
+
+    textarea.addEventListener('keyup' , (e) => {
+    
+        if( e.keyCode == 13 && e.shiftKey == false ) {
+            
+            sendMessage();
+            
         }
     });
-
-
-
 
 
 
@@ -381,40 +374,14 @@ $(document).ready(function(){
     open = false;
 
 	$('#nav-icon4').click(function(){
-		toggleSearch($('#nav-icon4'), true);
+		//toggleSearch($('#nav-icon4'), true);
     });
 
     toggleSearch = (el, toggleClassOrNot) => {
-		if( toggleClassOrNot == true ) {
-			el.toggleClass('open');
-		}
+        
 
-        if(open == false) {
-			$('div.mainBox').css('grid-template-columns' , '0px 6fr');
-			$('div.text').hide();
-            $('div.users').show();
-            updateContactList();
-            resetTotalCounter();
-		} else {
-			$('div.mainBox').css('grid-template-columns' , '6fr 0px');
-			$('div.text').show();
-			$('div.users').hide();
-		}
-
-		open = !open;
+        open = !open;
     }
-	
-	/*
-	checkHambergerMenu = () => {
-		console.log(document.body.clientWidth);
-		
-		if( document.body.clientWidth == 501 ) {
-			$('div.mainBox').css('grid-template-columns' , '2px 4fr');
-			$('div.text').show();
-            $('div#users').css('display','flex');
-		}
-	}
-    */
 
 });
 
