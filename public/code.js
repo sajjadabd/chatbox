@@ -381,13 +381,13 @@ $(document).ready(function(){
     open = false;
 
 	$('#nav-icon4').click(function(){
-		
-		toggleSearch($('#nav-icon4'));
-		
+		toggleSearch($('#nav-icon4'), true);
     });
 
-    toggleSearch = (el) => {
-        el.toggleClass('open');
+    toggleSearch = (el, toggleClassOrNot) => {
+		if( toggleClassOrNot == true ) {
+			el.toggleClass('open');
+		}
 
         if(open == false) {
 			$('div.mainBox').css('grid-template-columns' , '0px 6fr');
@@ -403,7 +403,18 @@ $(document).ready(function(){
 
 		open = !open;
     }
-    
+	
+	/*
+	checkHambergerMenu = () => {
+		console.log(document.body.clientWidth);
+		
+		if( document.body.clientWidth == 501 ) {
+			$('div.mainBox').css('grid-template-columns' , '2px 4fr');
+			$('div.text').show();
+            $('div#users').css('display','flex');
+		}
+	}
+    */
 
 });
 
