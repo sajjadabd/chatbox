@@ -113,6 +113,26 @@ div.users {
     color : white;
 }
 
+div.usersForLowRes {
+    box-sizing: border-box;
+    background-color : darkorchid;
+    color : white;
+    position : absolute;
+    z-index : 10;
+    width : 70vw;
+    height : 80vh;
+    display : none;
+}
+
+div.mask {
+    position : absolute;
+    width : 100vw;
+    height : 100vh;
+    background-color: rgb(128, 128, 128,0.6);
+    z-index : 5;
+    display : none;
+}
+
 div.text {
     background-color : white;
     display: grid;
@@ -325,5 +345,51 @@ div.status {
     justify-content: flex-start;
     align-items : center;
     font-family : UbuntuBold;
+}
+
+
+
+
+@media only screen and (max-width : 900px) {
+    div.container {
+        grid-template-columns: 80vw;
+    }
+
+    
+}
+
+
+@media only screen and (max-width : 800px) {
+    div.container {
+        grid-template-columns: 90vw;
+    }
+}
+
+
+@media only screen and (max-width : 700px) {
+    div.container {
+        grid-template-columns: 100vw;
+    }
+}
+
+
+@media only screen and (max-width : 500px) {
+    div.container {
+        grid-template-columns: 100vw;
+    }
+
+
+    div.mainBox {
+        grid-template-columns: 6fr;
+    }
+	
+	div.users {
+		display : none;
+	}
+
+
+    #nav-icon4 {
+        display : block;
+    }
 }
 

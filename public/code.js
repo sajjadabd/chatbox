@@ -26,10 +26,20 @@ $(document).ready(function(){
 
     let searchInput = document.getElementById('search');
 
+    let searchLowRes = document.getElementById('searchLowRes');
+
 
     let alreadySearched = false;
     searchInput.addEventListener('keyup' , (e) => {
+        doTheSearchJob(e);
+    });
 
+    searchLowRes.addEventListener('keyup' , (e) => {
+        doTheSearchJob(e);
+    });
+
+
+    doTheSearchJob = (e) => {
         if(alreadySearched == false) {
             setTimeout( ()=> {
                 socket.emit('searchUsers' ,  {
@@ -41,8 +51,7 @@ $(document).ready(function(){
         }
         
         alreadySearched = true;
-    });
-
+    }
 
     socket.on('searchResults' , (data) => {
 
@@ -129,6 +138,7 @@ $(document).ready(function(){
         noMessagesYet = false;
 
         $('#search').val('');
+        updateTotalCounter();
         
     });
 
@@ -219,6 +229,7 @@ $(document).ready(function(){
         });
 
         $('#contacts').html(contactsList);
+        $('#contactsLowRes').html(contactsList);
     }
 
     addToMessages = (data) => {
@@ -276,6 +287,7 @@ $(document).ready(function(){
         
         if ( $(document).width() < 500 ) {
             updateTotalCounter();
+            updateContactList($('#toUser').text());
         } else {
             updateContactList($('#toUser').text());
         }
@@ -368,17 +380,37 @@ $(document).ready(function(){
         }
     });
 
+    let usersForLowRes = document.getElementById('usersForLowRes');
+    let mask = document.getElementById('mask');
+    let contactsLowRes = document.getElementById('contactsLowRes');
 
+    contactsLowRes.addEventListener('click' , () => {
+        toggleSearch($('#nav-icon4'), true);
+    });
 
+    mask.addEventListener('click' , () => {
+        toggleSearch($('#nav-icon4'), true);
+    });
 
     open = false;
 
-	$('#nav-icon4').click(function(){
-		//toggleSearch($('#nav-icon4'), true);
+	$('#nav-icon4').click( function(){
+		toggleSearch($('#nav-icon4'), true);
     });
 
     toggleSearch = (el, toggleClassOrNot) => {
-        
+        el.toggleClass('open');
+        toggleLowResContacts();
+    }
+
+    toggleLowResContacts = () => {
+        if( open == false ) {
+            usersForLowRes.style.display = 'block';
+            mask.style.display = 'block';
+        } else {
+            usersForLowRes.style.display = 'none';
+            mask.style.display = 'none';
+        }
 
         open = !open;
     }
