@@ -37,7 +37,7 @@
 body {
     margin : 0;
     font-family : UbuntuBold;
-    height : 100vh;
+    /* height : 100vh; */
     box-sizing: border-box;
     overflow : hidden;
     --minimumWidth : 350px;
@@ -52,20 +52,20 @@ body {
 div.container {
     /* border : 1px solid black; */
     display : grid;
-    grid-template-rows : 10vh 90vh;
-    grid-template-columns: 80vw;
-    justify-content: center;
-    align-content : center;
+    grid-template-rows : 10vh 80vh;
+    height : 90vh;
+    grid-template-columns: 70vw;
+    /* justify-content: center;
+    align-content : center; */
     box-sizing: border-box;
     margin : auto;
     --spanColor : rgb(218, 218, 218);
     --edgeColor : rgb(218, 218, 218);
     --offset : -8px;
     --borderWidth : 10px;
-    background-color: red;
+    /* background-color: red; */
     overflow-y : hidden;
     min-width : var(--minimumWidth);
-    height : 100vh;
 }
 
 header {
@@ -74,7 +74,6 @@ header {
     display : flex;
     justify-content: center;
 	align-items : center;
-    height : 10vh;
     box-sizing: border-box;
     font-size : 1.4em;
     font-family: UbuntuBold;
@@ -136,7 +135,7 @@ div.mask {
 div.text {
     background-color : white;
     display: grid;
-    grid-template-rows: auto 70vh auto auto;
+    grid-template-rows: auto 62vh auto auto;
 }
 
 
