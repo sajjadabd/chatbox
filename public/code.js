@@ -285,12 +285,15 @@ $(document).ready(function(){
 
         }
         
+        updateTotalCounter();
+        updateContactList($('#toUser').text());
+        /*
         if ( $(document).width() < 500 ) {
-            updateTotalCounter();
-            updateContactList($('#toUser').text());
+            
         } else {
             updateContactList($('#toUser').text());
         }
+        */
 
 
         
@@ -361,12 +364,14 @@ $(document).ready(function(){
             message.value = '';
             messageBox.scrollTop = messageBox.scrollHeight;
 
+            updateTotalCounter();
+            updateContactList($('#toUser').text());
+            /*
             if ( $(document).width() < 500 ) {
-                updateTotalCounter();
-                updateContactList($('#toUser').text());
+                
             } else {
                 updateContactList($('#toUser').text());
-            }
+            }*/
 
         }
     }
